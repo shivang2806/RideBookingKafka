@@ -110,14 +110,3 @@ node customer.js
 - **Docker** – Containerization
 
 ---
-
-## Contributors
-
-- **Your Name**
-
----
-
-## License
-
-This project is licensed under the MIT License.
-
