@@ -1,0 +1,36 @@
+/**
+ 
+POST API http://localhost:3001/update-location {
+    "driverId": "D1", 
+    "driverName": "John", 
+    "zone": "north"
+}
+
+GET API http://localhost:3002/available-drivers/south
+
+POST API http://localhost:3002/create-booking{
+    "customerId": "C10", 
+    "customerName": "Sharma", 
+    "pickupZone": "south", 
+    "destination": "north"
+}
+
+GET API http://localhost:3001/booking-requests/south
+
+POST API http://localhost:3001/accept-booking{
+    "driverId": "D6", 
+    "driverName": "Iron", 
+    "zone": "south", 
+    "customerId": "C2"
+}
+
+POST API http://localhost:3001/complete-ride{
+    "driverId": "D6", 
+    "driverName": "Iron", 
+    "zone": "south", 
+    "customerId": "C2"
+}
+
+GET API http://localhost:3001/orders
+
+*/

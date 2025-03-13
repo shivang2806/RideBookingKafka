@@ -1,0 +1,91 @@
+# Commands
+
+# sudo docker-compose up -d
+
+# sudo docker ps
+
+# node admin.js
+
+# node driver.js
+
+# node customer.js
+
+=================================================================
+Folder
+--storage.js
+--driver.js (driver)
+--customer.js (customer)
+Api
+
+=================================================================
+
+                        +----------------------+
+                        |   Customer (API)     |
+                        +----------------------+
+                                 |
+        /available-drivers/:zone | Fetches available drivers
+                                 v
+                        +-------------------------------+
+                        | Kafka Topic: driver-locations |
+                        +-------------------------------+
+                                 |
+        /update-location (Driver) | Driver updates location
+                                 v
+                        +----------------------+
+                        |   Driver (API)       |
+                        +----------------------+
+
+---------------------------------------------------------------
+
+                        +----------------------+
+                        |   Customer (API)     |
+                        +----------------------+
+                                 |
+        /create-booking (POST)  | Creates a ride booking
+                                 v
+                        +-------------------------------+
+                        | Kafka Topic: booking-requests |
+                        +-------------------------------+
+                                 |
+                        (Subscribed by Drivers)
+                                 |
+                        +----------------------+
+                        |   Driver (API)       |
+                        +----------------------+
+                                 |
+        /accept-booking (POST)  | Driver accepts a ride
+                                 v
+                        +----------------------------+
+                        | Kafka Topic: ride-accepted |
+                        +----------------------------+
+                                 |
+                        (Subscribed by Customers)
+                                 |
+                        +----------------------+
+                        |   Customer (API)     |
+                        +----------------------+
+
+---------------------------------------------------------------
+
+                        +----------------------+
+                        |   Driver (API)       |
+                        +----------------------+
+                                 |
+        /complete-ride (POST)   | Driver completes ride
+                                 v
+                        +-----------------------------+
+                        | Kafka Topic: ride-completed |
+                        +-----------------------------+
+                                 |
+                        (Subscribed by Customers)
+                                 |
+                        +----------------------+
+                        |   Customer (API)     |
+                        +----------------------+
+                                 |
+        /orders (GET)  | Fetch completed rides
+                                 v
+                        +------------------------+
+                        | Kafka Storage (Orders) |
+                        +------------------------+
+
